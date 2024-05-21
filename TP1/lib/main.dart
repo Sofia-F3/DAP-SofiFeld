@@ -1,4 +1,4 @@
-import 'package:basic_navigation/core/router.dart';
+import 'package:TP1/core/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
