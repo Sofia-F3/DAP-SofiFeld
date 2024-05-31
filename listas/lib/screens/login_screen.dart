@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:listas/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,8 +21,22 @@ class _LoginView extends StatelessWidget {
   TextEditingController userController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
-  List<String> usuarios = ["sofi", "ana", "eli"];
-  List<String> contras = ["123", "jaja", "miau"];
+  List<String> usuarios = ["sofi", "ana", "eli", "user 1", "user 2"];
+  List<String> contras = ["123", "jaja", "miau", "hola", "no"];
+
+  var snackBar_1 = SnackBar(
+      content: const Text("Usuario incorrecto"),
+      action: SnackBarAction(
+        label: 'Descartar',
+        onPressed: () {},
+      ));
+
+  var snackBar_2 = SnackBar(
+      content: const Text("Contraseña incorrecta"),
+      action: SnackBarAction(
+        label: 'Descartar',
+        onPressed: () {},
+      ));
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +77,13 @@ class _LoginView extends StatelessWidget {
                         contras[i] == passController.text) {
                       context.pushNamed(HomeScreen.name,
                           extra: userController.text);
+                      return;
+                    } else if (i == 3) {
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar_2);
                     }
                   }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar_1);
                 }
               },
               child: const Text("Login")),
